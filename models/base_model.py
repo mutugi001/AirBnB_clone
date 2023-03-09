@@ -5,20 +5,21 @@ import datetime
 
 
 class BaseModel:
-    """initialization of class basemodel"""
-    def __init__(self, id, created_at, updated_at):
-        self.id = str(uuid())
-        self.created_at = datetime.datetime.now()
+    def __init__(self):
+        self.id = str(uuid.uuid4())
+        self.created_at = str(datetime.datetime.now())
+        self.updated_at = str(datetime.datetime.now)
 
     def __str__(self):
         print("{} {} {}".format(__class__, self.id, self.__dict__))
 
     def save(self):
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.datetime.now.isoformat()
 
     def to_dict(self):
-        dict keys = __dict__()
-        keys.append(__class__)
-        self.__dict__ = 
-        
 
+        keys_dict = self.__dict__.copy
+        keys_dict['__class__'] = type(self).__name__
+        keys_dict['created_at'] = self.created_at.isoformat()
+        keys_dict['updated_at'] = self.updated_at.isoformat()
+        return keys_dict
